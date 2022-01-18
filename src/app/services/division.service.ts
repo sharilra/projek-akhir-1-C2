@@ -14,4 +14,10 @@ export class DivisionService {
   getAll():Observable<Division[]>{
     return this.http.get<Division[]>(baseUrl);
   }
+  create(data: any): Observable<any> {
+    return this.http.post(baseUrl, data);
+  }
+  delete(id:any):Observable<any>{
+    return this.http.delete(`${baseUrl}/${id}`,id);
+}
 }
