@@ -1,7 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Division } from '../model/division.model';
 import { DivisionService } from '../services/division.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-division',
@@ -14,26 +14,20 @@ export class DivisionComponent implements OnInit {
   currentDivision:Division={};
   name='';
   constructor(private divisionService: DivisionService, private route: ActivatedRoute, private router: Router) { }
-
   ngOnInit(): void {
     this.retrieveDivision()
   }
-
   deleteDivision(division_id:any): void {
     this.divisionService.delete(division_id)
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/divisi'])
-          .then(() => {
-            window.location.reload();
-          });
+          this.router.navigate(['/dashboard']);
         },
         error => {
           console.log(error);
         });
   }
-
   retrieveDivision():void{
     this.divisionService.getAll()
       .subscribe(
